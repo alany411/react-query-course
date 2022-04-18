@@ -10,17 +10,14 @@ export default function Container({ children }: { children?: React.ReactNode }) 
         <div className='mx-auto w-full px-4 py-4 sm:px-6 lg:max-w-screen-xl lg:px-8'>
           <div className='flex items-center justify-between'>
             <h1 className='text-2xl font-semibold uppercase tracking-wider'>
-              <Link
-                to='/'
-                className='rounded-md hover:underline focus:outline-none focus:ring-2 focus:ring-stone-500 focus:ring-offset-2 focus:ring-offset-stone-800'
-              >
+              <Link to='/' className='hover:underline'>
                 Issues Tracker
               </Link>
             </h1>
             {isRootPath ? (
               <Link
                 to='/add'
-                className='inline-flex cursor-pointer items-center space-x-2 rounded-md border border-transparent bg-green-600 py-2 px-4 shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-stone-500 focus:ring-offset-2 focus:ring-offset-stone-800'
+                className='inline-flex cursor-pointer items-center space-x-2 rounded-md border border-transparent bg-green-600 py-2 px-4 shadow-sm hover:bg-green-700'
               >
                 <GoPlus />
                 <span>Add Issue</span>
@@ -28,7 +25,7 @@ export default function Container({ children }: { children?: React.ReactNode }) 
             ) : (
               <Link
                 to='/'
-                className='inline-flex cursor-pointer items-center space-x-2 rounded-md border border-transparent bg-stone-600 py-2 px-4 shadow-sm hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-500 focus:ring-offset-2 focus:ring-offset-stone-800'
+                className='inline-flex cursor-pointer items-center space-x-2 rounded-md border border-transparent bg-stone-600 py-2 px-4 shadow-sm hover:bg-stone-700'
               >
                 <GoArrowLeft />
                 <span>Back to Issues</span>
