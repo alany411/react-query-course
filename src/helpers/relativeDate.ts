@@ -1,4 +1,4 @@
-export function relativeDate(date: Date) {
+export function relativeDate(date: string) {
   const delta = Math.round((Number(+new Date()) - Number(new Date(date))) / 1000);
 
   const minute = 60;
