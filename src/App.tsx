@@ -1,21 +1,19 @@
-import { Link, Route, Routes, useMatch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
+import Container from '@/components/Container';
 import AddIssue from '@/pages/AddIssue';
 import Issue from '@/pages/Issue';
 import Issues from '@/pages/Issues';
 
 function App() {
-  const isRootPath = useMatch({ path: '/', end: true });
   return (
-    <div>
-      {!isRootPath ? <Link to='/'>Back to Issues List</Link> : <span>&nbsp;</span>}
-      <h1>Issue Tracker</h1>
+    <Container>
       <Routes>
         <Route path='/' element={<Issues />} />
         <Route path='/add' element={<AddIssue />} />
         <Route path='/issue/:number' element={<Issue />} />
       </Routes>
-    </div>
+    </Container>
   );
 }
 

@@ -7,11 +7,11 @@ export default function IssuesList() {
 
   return (
     <div>
-      <h2>Issues List</h2>
+      <h2 className='mb-4 text-xl font-semibold tracking-wider'>Issues List</h2>
       {issuesQuery.isLoading ? (
         <p>Loading...</p>
       ) : (
-        <ul>
+        <ul className='space-y-2'>
           {issuesQuery.data?.map((issue) => (
             <IssueItem
               key={issue.id}

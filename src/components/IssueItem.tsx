@@ -25,30 +25,42 @@ export default function IssueItem({
   title,
 }: IssueItemProps) {
   return (
-    <li>
+    <li className='flex items-center justify-between space-x-6 rounded border border-stone-700 bg-stone-900 p-4'>
       <div>
         {status === 'done' || status === 'cancelled' ? (
-          <GoIssueClosed className='text-red-600' />
+          <GoIssueClosed className='h-6 w-6 text-red-600' />
         ) : (
-          <GoIssueOpened className='text-green-600' />
+          <GoIssueOpened className='h-6 w-6 text-green-600' />
         )}
       </div>
-      <div>
+      <div className='flex flex-1 flex-col'>
         <span>
-          <Link to={`/issue/${number}`}>{title}</Link>
+          <Link to={`/issue/${number}`} className='font-semibold tracking-wide hover:underline'>
+            {title}
+          </Link>
+        </span>
+        <small className='mb-2 text-neutral-400'>
+          #{number} opened {relativeDate(createdDate)} by <span className='font-bold tracking-wide'>{createdBy}</span>
+        </small>
+        <span className='space-x-2'>
           {labels.map((label) => (
-            <span key={label}>{label}</span>
+            <span
+              key={label}
+              className='inline-flex items-center rounded bg-indigo-100 px-2 py-0.5 text-xs font-medium text-indigo-800'
+            >
+              <svg className='mr-1.5 h-2 w-2 text-indigo-400' fill='currentColor' viewBox='0 0 8 8'>
+                <circle cx={4} cy={4} r={3} />
+              </svg>
+              {label}
+            </span>
           ))}
         </span>
-        <small>
-          #{number} opened {relativeDate(createdDate)} by {createdBy}
-        </small>
       </div>
       {assignee && <div>{assignee}</div>}
-      <span>
+      <span className='flex items-center text-neutral-400'>
         {commentCount > 0 && (
           <>
-            <GoComment /> {commentCount}
+            <GoComment className='mr-2' /> {commentCount}
           </>
         )}
       </span>
