@@ -2,6 +2,7 @@ import { GoComment, GoIssueClosed, GoIssueOpened } from 'react-icons/go';
 import { Link } from 'react-router-dom';
 
 import { relativeDate } from '@/helpers/relativeDate';
+import useUserData from '@/hooks/useUserData';
 
 type IssueItemProps = {
   assignee: string;
@@ -24,6 +25,9 @@ export default function IssueItem({
   status,
   title,
 }: IssueItemProps) {
+  const assigneeUser = useUserData(assignee);
+  const createdByUser = useUserData(createdBy);
+
   return (
     <li className='flex items-center justify-between space-x-6 rounded border border-stone-700 bg-stone-900 p-4'>
       <div>
@@ -40,7 +44,12 @@ export default function IssueItem({
           </Link>
         </span>
         <small className='mb-2 text-neutral-400'>
-          #{number} opened {relativeDate(createdDate)} by <span className='font-bold tracking-wide'>{createdBy}</span>
+          #{number} opened {relativeDate(createdDate)}{' '}
+          {createdByUser.isSuccess && (
+            <>
+              by <span className='font-bold tracking-wide'>{createdByUser.data.name}</span>
+            </>
+          )}
         </small>
         <span className='space-x-2'>
           {labels.map((label) => (
@@ -56,7 +65,13 @@ export default function IssueItem({
           ))}
         </span>
       </div>
-      {assignee && <div>{assignee}</div>}
+      {assignee && assigneeUser.isSuccess && (
+        <img
+          alt={`Assigned to ${assigneeUser.data.name}`}
+          src={assigneeUser.data.profilePictureUrl}
+          className='inline-block h-8 w-8 rounded-full'
+        />
+      )}
       <span className='flex items-center text-neutral-400'>
         {commentCount > 0 && (
           <>
