@@ -75,11 +75,7 @@ export default function IssueItem({
         )}
       </div>
       <span className='flex items-center text-neutral-400'>
-        {commentCount > 0 && (
-          <>
-            <GoComment className='mr-2' /> {commentCount}
-          </>
-        )}
+        <GoComment className='mr-2' /> {commentCount > 0 ? commentCount : '0'}
       </span>
     </li>
   );
