@@ -47,7 +47,7 @@ export default function IssueItem({
           #{number} opened {relativeDate(createdDate)}{' '}
           {createdByUser.isSuccess && (
             <>
-              by <span className='font-bold tracking-wide'>{createdByUser.data.name}</span>
+              by <span className='font-bold tracking-wide'>{createdByUser.data?.name}</span>
             </>
           )}
         </small>
@@ -65,13 +65,15 @@ export default function IssueItem({
           ))}
         </span>
       </div>
-      {assignee && assigneeUser.isSuccess && (
-        <img
-          alt={`Assigned to ${assigneeUser.data.name}`}
-          src={assigneeUser.data.profilePictureUrl}
-          className='inline-block h-8 w-8 rounded-full'
-        />
-      )}
+      <div className='h-8 w-8'>
+        {assignee && assigneeUser.isSuccess && (
+          <img
+            alt={`Assigned to ${assigneeUser.data?.name}`}
+            src={assigneeUser.data?.profilePictureUrl}
+            className='inline-block h-8 w-8 rounded-full'
+          />
+        )}
+      </div>
       <span className='flex items-center text-neutral-400'>
         {commentCount > 0 && (
           <>
