@@ -3,9 +3,12 @@ import '@/styles/tailwind.css';
 import { worker } from '@uidotdev/react-query-api';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter } from 'react-router-dom';
 
 import App from '@/App';
+
+const queryClient = new QueryClient();
 
 new Promise((res) => setTimeout(res, 100))
   .then(() =>
@@ -17,11 +20,13 @@ new Promise((res) => setTimeout(res, 100))
   .then(() => {
     ReactDOM.render(
       <React.StrictMode>
-        <BrowserRouter>
-          <div>
-            <App />
-          </div>
-        </BrowserRouter>
+        <QueryClientProvider client={queryClient}>
+          <BrowserRouter>
+            <div>
+              <App />
+            </div>
+          </BrowserRouter>
+        </QueryClientProvider>
       </React.StrictMode>,
       document.getElementById('root')
     );
