@@ -6,7 +6,7 @@ export default function IssuesList() {
   const issuesQuery = useQuery<Issue[]>(['issues'], () => fetch('/api/issues').then((res) => res.json()));
 
   return (
-    <div>
+    <div className='rounded-md bg-stone-800 p-4'>
       <h2 className='mb-4 text-xl font-semibold tracking-wider'>Issues List</h2>
       {issuesQuery.isLoading ? (
         <p>Loading...</p>
