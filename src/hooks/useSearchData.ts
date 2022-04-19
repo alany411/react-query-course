@@ -5,7 +5,7 @@ import fetchWithError from '@/helpers/fetchWithError';
 export default function useSearchData(searchValue: string) {
   const searchData = useQuery<Search, Error>(
     ['issues', 'search', searchValue],
-    () => fetchWithError(`/api/search/issues?q=${searchValue}`),
+    ({ signal }) => fetchWithError(`/api/search/issues?q=${searchValue}`, { signal }),
     {
       enabled: Boolean(searchValue),
     }
