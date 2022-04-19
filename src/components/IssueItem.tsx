@@ -1,6 +1,7 @@
 import { GoComment, GoIssueClosed, GoIssueOpened } from 'react-icons/go';
 import { Link } from 'react-router-dom';
 
+import LabelItem from '@/components/LabelItem';
 import { relativeDate } from '@/helpers/relativeDate';
 import useUserData from '@/hooks/useUserData';
 
@@ -53,15 +54,7 @@ export default function IssueItem({
         </small>
         <span className='space-x-2'>
           {labels.map((label) => (
-            <span
-              key={label}
-              className='inline-flex items-center rounded bg-indigo-100 px-2 py-0.5 text-xs font-medium text-indigo-800'
-            >
-              <svg className='mr-1.5 h-2 w-2 text-indigo-400' fill='currentColor' viewBox='0 0 8 8'>
-                <circle cx={4} cy={4} r={3} />
-              </svg>
-              {label}
-            </span>
+            <LabelItem key={label} label={label} />
           ))}
         </span>
       </div>

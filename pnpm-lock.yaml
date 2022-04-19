@@ -8,6 +8,7 @@ specifiers:
   '@uidotdev/react-query-api': 0.1.18
   '@vitejs/plugin-react': 1.3.1
   autoprefixer: 10.4.4
+  classnames: 2.3.1
   eslint: 8.13.0
   eslint-config-prettier: 8.5.0
   eslint-import-resolver-typescript: 2.7.1
@@ -29,6 +30,7 @@ specifiers:
 
 dependencies:
   '@uidotdev/react-query-api': 0.1.18
+  classnames: 2.3.1
   react: 18.0.0
   react-dom: 18.0.0_react@18.0.0
   react-icons: 4.3.1_react@18.0.0
@@ -909,6 +911,10 @@ packages:
       readdirp: 3.6.0
     optionalDependencies:
       fsevents: 2.3.2
+
+  /classnames/2.3.1:
+    resolution: {integrity: sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==}
+    dev: false
 
   /cli-cursor/3.1.0:
     resolution: {integrity: sha512-I/zHAwsKf9FqGoXM4WWRACob9+SNukZTd94DWF57E4toouRulbCxcUh6RKUEOQlYTHJnzkPMySvPNaaSLNfLZw==}

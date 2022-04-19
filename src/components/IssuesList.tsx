@@ -2,8 +2,15 @@ import { useQuery } from 'react-query';
 
 import IssueItem from '@/components/IssueItem';
 
-export default function IssuesList() {
-  const issuesQuery = useQuery<Issue[]>(['issues'], () => fetch('/api/issues').then((res) => res.json()));
+type IssuesListProps = {
+  labels: Label['id'][];
+};
+
+export default function IssuesList({ labels }: IssuesListProps) {
+  const issuesQuery = useQuery<Issue[]>(['issues', { labels }], async () => {
+    const labelsString = labels.map((label) => `labels[]=${label}`).join('&');
+    return fetch(`/api/issues?${labelsString}`).then((res) => res.json());
+  });
 
   return (
     <div className='rounded-md bg-stone-800 p-4'>
