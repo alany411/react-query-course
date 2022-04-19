@@ -7,11 +7,12 @@ import useSearchData from '@/hooks/useSearchData';
 
 type IssuesListProps = {
   labels: Label['id'][];
+  status: Issue['status'];
 };
 
-export default function IssuesList({ labels }: IssuesListProps) {
+export default function IssuesList({ labels, status }: IssuesListProps) {
   const [searchValue, setSearchValue] = useState('');
-  const issuesQuery = useIssuesData(labels);
+  const issuesQuery = useIssuesData(labels, status);
   const searchQuery = useSearchData(searchValue);
 
   return (
