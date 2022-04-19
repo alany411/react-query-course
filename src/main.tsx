@@ -9,7 +9,13 @@ import { BrowserRouter } from 'react-router-dom';
 
 import App from '@/App';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60,
+    },
+  },
+});
 
 const container = document.getElementById('root') as Element;
 const root = createRoot(container);

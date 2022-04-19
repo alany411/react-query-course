@@ -5,7 +5,7 @@ import fetchWithError from '@/helpers/fetchWithError';
 export default function useUserData(userId: string) {
   const usersData = useQuery<User, Error>(['users', userId], () => fetchWithError(`/api/users/${userId}`), {
     enabled: Boolean(userId),
-    staleTime: 1000 * 60 * 1,
+    staleTime: 1000 * 60 * 5,
   });
 
   return usersData;

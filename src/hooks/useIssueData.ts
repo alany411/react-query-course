@@ -8,7 +8,6 @@ export default function useIssueData(issueNumber: string | undefined) {
     () => fetchWithError(`/api/issues/${issueNumber}`),
     {
       enabled: Boolean(issueNumber),
-      staleTime: 1000 * 60 * 1,
     }
   );
 
