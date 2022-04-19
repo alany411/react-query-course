@@ -8,8 +8,6 @@ export default function Issues() {
   const [selectedLabels, setSelectedLabels] = useState<Label['id'][]>([]);
   const [selectedStatus, setSelectedStatus] = useState<Issue['status']>('');
 
-  console.log(selectedStatus);
-
   return (
     <div className='grid w-full gap-4 lg:grid-cols-12'>
       <div className='col-span-12 block space-y-4 lg:hidden'>
