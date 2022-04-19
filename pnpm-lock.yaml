@@ -2,6 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@tailwindcss/forms': 0.5.0
+  '@tanem/react-nprogress': 5.0.0
   '@types/react': 18.0.5
   '@types/react-dom': 18.0.1
   '@typescript-eslint/eslint-plugin': 5.19.0
@@ -30,6 +31,7 @@ specifiers:
   vite: 2.9.5
 
 dependencies:
+  '@tanem/react-nprogress': 5.0.0_react-dom@18.0.0+react@18.0.0
   '@uidotdev/react-query-api': 0.1.18
   classnames: 2.3.1
   react: 18.0.0
@@ -438,6 +440,18 @@ packages:
       mini-svg-data-uri: 1.4.4
       tailwindcss: 3.0.24
     dev: true
+
+  /@tanem/react-nprogress/5.0.0_react-dom@18.0.0+react@18.0.0:
+    resolution: {integrity: sha512-ReHCykV4pRIiXsPvbIwZ7Qrxx+940W5AdPsrXeFJlxBWUa9HEMtjXxwwvCoFbnlDF1ZziNvriAvgD/rneM9v3g==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.17.9
+      hoist-non-react-statics: 3.3.2
+      react: 18.0.0
+      react-dom: 18.0.0_react@18.0.0
+    dev: false
 
   /@types/cookie/0.4.1:
     resolution: {integrity: sha512-XW/Aa8APYr6jSVVA1y/DEIZX0/GMKLEVekNG727R8cs56ahETkRAy/3DR7+fJyh7oUgGwNQaRfXCun0+KbWY7Q==}
@@ -1865,6 +1879,12 @@ packages:
       '@babel/runtime': 7.17.9
     dev: false
 
+  /hoist-non-react-statics/3.3.2:
+    resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
+    dependencies:
+      react-is: 16.13.1
+    dev: false
+
   /iconv-lite/0.4.24:
     resolution: {integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==}
     engines: {node: '>=0.10.0'}
@@ -2599,7 +2619,6 @@ packages:
 
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
-    dev: true
 
   /react-query/4.0.0-beta.3_react-dom@18.0.0+react@18.0.0:
     resolution: {integrity: sha512-WZkiBD+B3rVfPwR9e7W1TvshLYCfsCKx2t/jqpF/ZP3KwQnLAQ8aO67qtrP616QAK1qk3AfJMSsFtDwgYcq0AA==}

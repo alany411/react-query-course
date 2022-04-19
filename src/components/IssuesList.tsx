@@ -2,6 +2,7 @@ import cn from 'classnames';
 import { useState } from 'react';
 
 import IssueItem from '@/components/IssueItem';
+import Loader from '@/components/Loader';
 import useIssuesData from '@/hooks/useIssuesData';
 import useSearchData from '@/hooks/useSearchData';
 
@@ -17,7 +18,10 @@ export default function IssuesList({ labels, status }: IssuesListProps) {
 
   return (
     <div className='rounded-md bg-stone-800 p-4'>
-      <h2 className='mb-4 text-xl font-semibold tracking-wider'>Issues List</h2>
+      <h2 className='mb-4 inline-flex items-center space-x-4 text-xl font-semibold tracking-wider'>
+        <span>Issues List</span>
+        {issuesQuery.isFetching && <Loader />}
+      </h2>
       <form
         onSubmit={(event) => {
           event.preventDefault();
