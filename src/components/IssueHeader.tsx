@@ -6,17 +6,10 @@ import { relativeDate } from '@/helpers/relativeDate';
 import useUserData from '@/hooks/useUserData';
 
 type IssueHeaderProps = {
-  isLoading: boolean;
   issue: Issue | undefined;
 };
 
-export default function IssueHeader({ isLoading, issue }: IssueHeaderProps) {
-  if (isLoading)
-    return (
-      <div className='rounded-md bg-stone-800 p-4'>
-        <p>Loading...</p>
-      </div>
-    );
+export default function IssueHeader({ issue }: IssueHeaderProps) {
   if (!issue) return null;
 
   const { createdBy, createdDate, comments, number, status, title } = issue;
@@ -24,7 +17,7 @@ export default function IssueHeader({ isLoading, issue }: IssueHeaderProps) {
   const createdByUser = useUserData(createdBy);
 
   return (
-    <div className='rounded-md bg-stone-800 p-4'>
+    <div>
       <h2 className='mb-4 text-xl font-semibold tracking-wider'>
         <span>{title}</span> <span className='text-neutral-400'>#{number}</span>
       </h2>

@@ -1,8 +1,8 @@
 import cn from 'classnames';
 import { useState } from 'react';
-import { useQuery } from 'react-query';
 
 import IssueItem from '@/components/IssueItem';
+import useIssuesData from '@/hooks/useIssuesData';
 import useSearchData from '@/hooks/useSearchData';
 
 type IssuesListProps = {
@@ -11,10 +11,7 @@ type IssuesListProps = {
 
 export default function IssuesList({ labels }: IssuesListProps) {
   const [searchValue, setSearchValue] = useState('');
-  const issuesQuery = useQuery<Issue[]>(['issues', { labels }], async () => {
-    const labelsString = labels.map((label) => `labels[]=${label}`).join('&');
-    return fetch(`/api/issues?${labelsString}`).then((res) => res.json());
-  });
+  const issuesQuery = useIssuesData(labels);
   const searchQuery = useSearchData(searchValue);
 
   return (
@@ -28,7 +25,6 @@ export default function IssuesList({ labels }: IssuesListProps) {
           const search = elements.namedItem('search') as HTMLInputElement;
           setSearchValue(search.value);
         }}
-        className='mb-4'
       >
         <label htmlFor='search' className='sr-only'>
           Search Issues
@@ -48,9 +44,16 @@ export default function IssuesList({ labels }: IssuesListProps) {
         />
       </form>
       {issuesQuery.isLoading ? (
-        <p>Loading...</p>
+        <p className='mt-4'>Loading...</p>
+      ) : issuesQuery.isError ? (
+        <p className='mt-4'>{issuesQuery.error.message}</p>
       ) : searchQuery.fetchStatus === 'idle' && searchQuery.isLoading === true ? (
-        <ul className='space-y-2'>
+        <ul
+          className={cn('space-y-2', {
+            'mt-4': issuesQuery.data.length !== 0,
+            'mt-0': issuesQuery.data.length === 0,
+          })}
+        >
           {issuesQuery.data?.map((issue) => (
             <IssueItem
               key={issue.id}
@@ -68,11 +71,13 @@ export default function IssuesList({ labels }: IssuesListProps) {
       ) : (
         <>
           {searchQuery.isLoading ? (
-            <p>Loading...</p>
+            <p className='mt-4'>Loading...</p>
+          ) : searchQuery.isError ? (
+            <p className='mt-4'>{searchQuery.error.message}</p>
           ) : (
             <>
               <p
-                className={cn('ml-1 text-sm italic text-neutral-400', {
+                className={cn('ml-1 mt-4 text-sm italic text-neutral-400', {
                   'mb-2': searchQuery.data?.items.length !== 0,
                 })}
               >

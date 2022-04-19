@@ -13,11 +13,27 @@ export default function IssueDetails() {
   return (
     <div className='grid w-full gap-4 lg:grid-cols-12'>
       <div className='col-span-12 block'>
-        <IssueHeader isLoading={issueQuery.isLoading} issue={issueQuery.data} />
+        <div className='rounded-md bg-stone-800 p-4'>
+          {issueQuery.isLoading ? (
+            <p>Loading...</p>
+          ) : issueQuery.isError ? (
+            <p>{issueQuery.error.message}</p>
+          ) : (
+            <IssueHeader issue={issueQuery.data} />
+          )}
+        </div>
       </div>
       <div className='col-span-12 block lg:hidden'>Right Top</div>
       <section className='col-span-12 lg:col-span-8'>
-        <CommentsList isLoading={commentsQuery.isLoading} comments={commentsQuery.data} />
+        <div className='rounded-md bg-stone-800 p-4'>
+          {commentsQuery.isLoading ? (
+            <p>Loading...</p>
+          ) : commentsQuery.isError ? (
+            <p>{commentsQuery.error.message}</p>
+          ) : (
+            <CommentsList comments={commentsQuery.data} />
+          )}
+        </div>
       </section>
       <aside className='hidden lg:col-span-4 lg:block'>Right</aside>
     </div>

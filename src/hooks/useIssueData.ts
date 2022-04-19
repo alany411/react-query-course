@@ -1,9 +1,11 @@
 import { useQuery } from 'react-query';
 
+import fetchWithError from '@/helpers/fetchWithError';
+
 export default function useIssueData(issueNumber: string | undefined) {
-  const issueQuery = useQuery<Issue>(
+  const issueQuery = useQuery<Issue, Error>(
     ['issues', issueNumber],
-    () => fetch(`/api/issues/${issueNumber}`).then((res) => res.json()),
+    () => fetchWithError(`/api/issues/${issueNumber}`),
     {
       enabled: Boolean(issueNumber),
       staleTime: 1000 * 60 * 1,

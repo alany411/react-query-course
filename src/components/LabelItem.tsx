@@ -5,7 +5,7 @@ import useLabelsData from '@/hooks/useLabelsData';
 export default function LabelItem({ label }: { label: string }) {
   const labelsQuery = useLabelsData();
 
-  if (labelsQuery.isLoading) return null;
+  if (labelsQuery.isLoading || labelsQuery.isError) return null;
 
   const labelObj = labelsQuery.data?.find((queryLabel) => queryLabel.id === label);
   if (!labelObj) return null;

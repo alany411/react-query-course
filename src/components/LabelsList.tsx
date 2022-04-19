@@ -16,6 +16,8 @@ export default function LabelsList({ selected, toggle }: LabelsListProps) {
       <h2 className='mb-4 text-xl font-semibold tracking-wider'>Labels</h2>
       {labelsQuery.isLoading ? (
         <p>Loading...</p>
+      ) : labelsQuery.isError ? (
+        <p>{labelsQuery.error.message}</p>
       ) : (
         <ul className='flex flex-wrap gap-2'>
           {labelsQuery.data?.map((label) => (
