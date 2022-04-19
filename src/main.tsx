@@ -1,14 +1,17 @@
 import '@/styles/tailwind.css';
 
 import { worker } from '@uidotdev/react-query-api';
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter } from 'react-router-dom';
 
 import App from '@/App';
 
 const queryClient = new QueryClient();
+
+const container = document.getElementById('root') as Element;
+const root = createRoot(container);
 
 new Promise((res) => setTimeout(res, 100))
   .then(() =>
@@ -18,14 +21,13 @@ new Promise((res) => setTimeout(res, 100))
     })
   )
   .then(() => {
-    ReactDOM.render(
-      <React.StrictMode>
+    root.render(
+      <StrictMode>
         <QueryClientProvider client={queryClient}>
           <BrowserRouter>
             <App />
           </BrowserRouter>
         </QueryClientProvider>
-      </React.StrictMode>,
-      document.getElementById('root')
+      </StrictMode>
     );
   });
