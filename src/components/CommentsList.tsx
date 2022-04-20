@@ -1,7 +1,7 @@
 import CommentItem from '@/components/CommentItem';
 
 type CommentsListProps = {
-  comments: IssueComment[] | undefined;
+  comments: IssueComment[][];
 };
 
 export default function CommentsList({ comments }: CommentsListProps) {
@@ -9,9 +9,7 @@ export default function CommentsList({ comments }: CommentsListProps) {
 
   return (
     <ul className='space-y-2'>
-      {comments.map((comment) => (
-        <CommentItem key={comment.id} comment={comment} />
-      ))}
+      {comments.map((commentPage) => commentPage.map((comment) => <CommentItem key={comment.id} comment={comment} />))}
     </ul>
   );
 }

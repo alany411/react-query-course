@@ -1,13 +1,17 @@
-import { useQuery } from 'react-query';
+import { useInfiniteQuery } from 'react-query';
 
 import fetchWithError from '@/helpers/fetchWithError';
 
 export default function useIssueCommentsData(issueNumber: string | undefined) {
-  const issueCommentsQuery = useQuery<IssueComment[], Error>(
+  const issueCommentsQuery = useInfiniteQuery<IssueComment[], Error>(
     ['issues', issueNumber, 'comments'],
-    ({ signal }) => fetchWithError(`/api/issues/${issueNumber}/comments`, { signal }),
+    ({ signal, pageParam = 1 }) => fetchWithError(`/api/issues/${issueNumber}/comments?page=${pageParam}`, { signal }),
     {
       enabled: Boolean(issueNumber),
+      getNextPageParam: (lastPage, pages) => {
+        if (lastPage.length === 0) return;
+        return pages.length + 1;
+      },
     }
   );
 

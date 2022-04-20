@@ -5,6 +5,8 @@ import IssueAssignment from '@/components/IssueAssignment';
 import IssueHeader from '@/components/IssueHeader';
 import IssueLabels from '@/components/IssueLabels';
 import IssueStatus from '@/components/IssueStatus';
+import Loader from '@/components/Loader';
+import { useScrollToBottomAction } from '@/helpers/useScrollToBottomAction';
 import useIssueCommentsData from '@/hooks/useIssueCommentsData';
 import useIssueData from '@/hooks/useIssueData';
 
@@ -12,6 +14,8 @@ export default function IssueDetails() {
   const { number } = useParams();
   const issueQuery = useIssueData(number);
   const commentsQuery = useIssueCommentsData(number);
+
+  useScrollToBottomAction(document, commentsQuery.fetchNextPage, 100);
 
   const AsideContent = () => (
     <div className='rounded-md bg-stone-800 p-4'>
@@ -52,7 +56,14 @@ export default function IssueDetails() {
           ) : commentsQuery.isError ? (
             <p>{commentsQuery.error.message}</p>
           ) : (
-            <CommentsList comments={commentsQuery.data} />
+            <>
+              <CommentsList comments={commentsQuery.data.pages} />
+              {commentsQuery.isFetchingNextPage && (
+                <div className='mt-4 inline-flex w-full items-center justify-center'>
+                  <Loader />
+                </div>
+              )}
+            </>
           )}
         </div>
       </section>
