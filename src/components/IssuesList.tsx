@@ -25,10 +25,12 @@ export default function IssuesList({ labels, status }: IssuesListProps) {
       <form
         onSubmit={(event) => {
           event.preventDefault();
-          const target = event.target as HTMLFormElement;
-          const elements = target.elements as HTMLFormControlsCollection;
-          const search = elements.namedItem('search') as HTMLInputElement;
-          setSearchValue(search.value);
+
+          const target = event.target as typeof event.target & {
+            search: { value: string };
+          };
+
+          setSearchValue(target.search.value);
         }}
       >
         <label htmlFor='search' className='sr-only'>
