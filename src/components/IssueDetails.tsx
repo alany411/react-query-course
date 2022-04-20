@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 
 import CommentsList from '@/components/CommentsList';
 import IssueHeader from '@/components/IssueHeader';
+import IssueStatus from '@/components/IssueStatus';
 import useIssueCommentsData from '@/hooks/useIssueCommentsData';
 import useIssueData from '@/hooks/useIssueData';
 
@@ -35,7 +36,17 @@ export default function IssueDetails() {
           )}
         </div>
       </section>
-      <aside className='hidden lg:col-span-4 lg:block'>Right</aside>
+      <aside className='hidden lg:col-span-4 lg:block'>
+        <div className='rounded-md bg-stone-800 p-4'>
+          {issueQuery.isLoading ? (
+            <p>Loading...</p>
+          ) : issueQuery.isError ? (
+            <p>{issueQuery.error.message}</p>
+          ) : (
+            <IssueStatus issue={issueQuery.data} />
+          )}
+        </div>
+      </aside>
     </div>
   );
 }
