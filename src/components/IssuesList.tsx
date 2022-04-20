@@ -18,7 +18,7 @@ export default function IssuesList({ labels, status }: IssuesListProps) {
 
   return (
     <div className='rounded-md bg-stone-800 p-4'>
-      <h2 className='mb-4 inline-flex items-center space-x-4 text-xl font-semibold tracking-wider'>
+      <h2 className='mb-2 inline-flex items-center space-x-4 text-xl font-semibold tracking-wider'>
         <span>Issues List</span>
         {issuesQuery.isFetching && <Loader />}
       </h2>

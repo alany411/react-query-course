@@ -18,7 +18,7 @@ export default function IssueHeader({ issue }: IssueHeaderProps) {
 
   return (
     <div>
-      <h2 className='mb-4 text-xl font-semibold tracking-wider'>
+      <h2 className='mb-2 text-xl font-semibold tracking-wider'>
         <span>{title}</span> <span className='text-neutral-400'>#{number}</span>
       </h2>
       <div className='flex items-center space-x-4'>

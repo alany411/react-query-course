@@ -75,7 +75,7 @@ export default function AddIssue() {
             type='submit'
             disabled={addIssue.isLoading}
             className={cn(
-              'cursor-pointer rounded-md border border-transparent bg-green-600 py-2 px-4 shadow-sm hover:bg-green-700',
+              'cursor-pointer rounded-md border border-transparent bg-green-600 py-2 px-4 shadow-sm hover:bg-green-700 focus:border-stone-900 focus:outline-none focus:ring-2 focus:ring-stone-500 focus:ring-offset-2 focus:ring-offset-stone-800',
               {
                 'cursor-not-allowed opacity-50': addIssue.isLoading,
               }

@@ -45,17 +45,9 @@ export default function IssueStatus({ issue }: IssueStatusProps) {
   );
 
   return (
-    <div className='space-y-4'>
-      <div>
-        <h3 className='mb-4 text-lg font-semibold tracking-wider'>Status</h3>
-        <StatusSelect value={status} onChange={(event) => setStatus.mutate(event.target.value)} noEmptyOption />
-      </div>
-      <div>
-        <h3 className='mb-4 text-lg font-semibold tracking-wider'>Assigned To</h3>
-      </div>
-      <div>
-        <h3 className='mb-4 text-lg font-semibold tracking-wider'>Labels</h3>
-      </div>
+    <div>
+      <h3 className='mb-2 text-lg font-semibold tracking-wider'>Status</h3>
+      <StatusSelect value={status} onChange={(event) => setStatus.mutate(event.target.value)} noEmptyOption />
     </div>
   );
 }
