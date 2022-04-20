@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import CommentsList from '@/components/CommentsList';
 import IssueAssignment from '@/components/IssueAssignment';
 import IssueHeader from '@/components/IssueHeader';
+import IssueLabels from '@/components/IssueLabels';
 import IssueStatus from '@/components/IssueStatus';
 import useIssueCommentsData from '@/hooks/useIssueCommentsData';
 import useIssueData from '@/hooks/useIssueData';
@@ -22,6 +23,7 @@ export default function IssueDetails() {
         <div className='space-y-4'>
           <IssueStatus issue={issueQuery.data} />
           <IssueAssignment issue={issueQuery.data} />
+          <IssueLabels issue={issueQuery.data} />
         </div>
       )}
     </div>

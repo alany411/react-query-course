@@ -14,6 +14,7 @@ export default function IssueAssignment({ issue }: IssueAssignmentProps) {
   const queryClient = useQueryClient();
   if (!issue) return null;
   const { assignee, number } = issue;
+
   const assigneeUser = useUserData(assignee);
   const usersQuery = useUsersData();
 
@@ -91,9 +92,9 @@ export default function IssueAssignment({ issue }: IssueAssignmentProps) {
           )}
         </Menu>
       </div>
-      <div>
+      <div className='h-8 w-8'>
         {assigneeUser.isLoading ? (
-          <div className='inline-block h-8 w-8' />
+          <div className='inline-block h-8 w-8 rounded-full bg-neutral-600' />
         ) : assigneeUser.isError ? (
           <p>{assigneeUser.error.message}</p>
         ) : (
